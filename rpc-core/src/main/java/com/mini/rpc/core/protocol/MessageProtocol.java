@@ -1,5 +1,7 @@
 package com.mini.rpc.core.protocol;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +9,7 @@ import java.io.Serializable;
  * @date: 22.5.2
  * @Version:1.0
  */
+@Data
 public class MessageProtocol<T> implements Serializable {
 
 

@@ -1,5 +1,7 @@
 package com.mini.rpc.core.common;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @Version:1.0
  */
 
+@Data
 public class RpcRequest implements Serializable {
 
     /**
