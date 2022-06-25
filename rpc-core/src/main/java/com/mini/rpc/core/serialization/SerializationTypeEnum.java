@@ -10,7 +10,9 @@ import lombok.Getter;
 public enum SerializationTypeEnum {
 
     HESSIAN((byte) 0),
-    JSON((byte) 1);
+    JSON((byte) 1),
+    KRYO((byte)2)
+    ;
 
     @Getter
     private byte type;
