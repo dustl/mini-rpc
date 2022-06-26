@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Autowired
-public @interface RpcAutowire {
+public @interface RpcAutowired {
 
     String version() default "1.0";
 

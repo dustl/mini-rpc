@@ -1,0 +1,9 @@
+server:
+  port: 8082
+
+rpc:
+  client:
+    balance: fullRoundBalance
+spring:
+  profiles:
+    active: dev

@@ -45,6 +45,7 @@ public class RpcDecode extends ByteToMessageDecoder {
             log.error("丢弃消息");
             return;
         }
+        log.info("开始解码:{}",byteBuf);
         log.info("current read index : {}" ,byteBuf.readerIndex());
         // 标记读指针位置
         byteBuf.markReaderIndex();
@@ -82,7 +83,7 @@ public class RpcDecode extends ByteToMessageDecoder {
 
         switch (type) {
             case REQUEST:
-                // 如果是请求的话，就反序列数据
+                // 反序列数据
                 RpcRequest rpcRequest = rpcSerialization.deSerialize(data, RpcRequest.class);
                 if (rpcRequest != null) {
                     MessageProtocol<RpcRequest> messageProtocol = new MessageProtocol<>();
@@ -102,7 +103,7 @@ public class RpcDecode extends ByteToMessageDecoder {
                     list.add(messageProtocol);
 
                 }else {
-                    log.error("反序列化后的rpcReponse为空");
+                    log.error("反序列化后的rpcResponse为空");
                 }
                 break;
             default:

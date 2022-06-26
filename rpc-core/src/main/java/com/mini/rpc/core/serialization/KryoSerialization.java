@@ -19,6 +19,7 @@ import java.io.IOException;
  */
 @Slf4j
 public class KryoSerialization implements RpcSerialization{
+
     @Override
     public <T> byte[] serialize(T object) throws IOException {
         try (ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -28,7 +29,8 @@ public class KryoSerialization implements RpcSerialization{
             kryo.register(RpcRequest.class);
             kryo.register(RpcResponse.class);
             // 对象转换成byte数组
-            kryo.writeObject(output, kryo);
+            kryo.writeObject(output, object);
+            log.info("kryo  data len after serialize :{}",output.toBytes().length);
             return output.toBytes();
         } catch (Exception e) {
             log.error("kryo 序列化异常：", e);

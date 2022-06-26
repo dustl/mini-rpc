@@ -14,7 +14,7 @@ public class SerializationStrategyFactory {
             case HESSIAN:
                 return new HessianSerialization();
             case KRYO:
-                return new HessianSerialization();
+                return new KryoSerialization();
             default:
                 throw new IllegalArgumentException("序列化类型不支持");
 

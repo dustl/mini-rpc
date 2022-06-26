@@ -1,5 +1,6 @@
 package com.mini.rpc.core.serialization;
 
+import com.esotericsoftware.kryo.Kryo;
 import lombok.Getter;
 
 /**
@@ -9,9 +10,9 @@ import lombok.Getter;
  */
 public enum SerializationTypeEnum {
 
-    HESSIAN((byte) 0),
-    JSON((byte) 1),
-    KRYO((byte)2)
+    KRYO((byte)0),
+    HESSIAN((byte) 1),
+    JSON((byte) 2),
     ;
 
     @Getter
@@ -27,7 +28,7 @@ public enum SerializationTypeEnum {
                 return typeEnum;
             }
         }
-        return HESSIAN;
+        return KRYO;
     }
 
     public static SerializationTypeEnum parseByType(byte type) {

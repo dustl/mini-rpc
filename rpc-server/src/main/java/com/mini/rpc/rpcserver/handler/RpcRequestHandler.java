@@ -42,8 +42,9 @@ public class RpcRequestHandler extends SimpleChannelInboundHandler<MessageProtoc
             MessageHeader messageHeader = rpcRequestMessageProtocol.getMessageHeader();
             messageHeader.setMsgType(MsgType.RESPONSE.getType());
             messageHeader.setStatus(MsgStatus.SUCCESS.getCode());
+            Object result =null;
             try {
-                Object result = handleRequest(rpcRequestMessageProtocol.getBody());
+                result = handleRequest(rpcRequestMessageProtocol.getBody());
                 rpcResponse.setData(result);
                 resMessageProtocol.setMessageHeader(messageHeader);
                 resMessageProtocol.setBody(rpcResponse);
@@ -52,6 +53,7 @@ public class RpcRequestHandler extends SimpleChannelInboundHandler<MessageProtoc
                 rpcResponse.setMessage(throwable.getMessage());
                 log.error("调用异常 : ",throwable);
             }
+            log.info("返回数据:{}",result);
             // 把结果数据写回去
             channelHandlerContext.writeAndFlush(resMessageProtocol);
 

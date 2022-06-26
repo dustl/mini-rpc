@@ -1,15 +1,13 @@
 package com.mini.rpc.rpcserver.transport;
 
+import com.mini.rpc.rpcserver.handler.ServerChannelHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
 
 /**
  * @Author:liwy
@@ -32,7 +30,7 @@ public class NettyRpcServer implements RpcServer {
                     .childHandler(new ServerChannelHandler())
                     .childOption(ChannelOption.SO_KEEPALIVE,true);
             ChannelFuture channelFuture = serverBootstrap.bind(serverHost, port).sync();
-            log.info("RpcServer address :{}  port : {} `");
+            log.info("RpcServer address :{}  port : {} ",serverHost,port);
             channelFuture.channel().closeFuture().sync();
         } catch (Exception e) {
             log.error("NettyRpc连接异常",e);

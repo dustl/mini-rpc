@@ -35,6 +35,7 @@ public class HessianSerialization implements RpcSerialization {
             hessianSerializerOutput.writeObjectImpl(object);
             hessianSerializerOutput.flush();
             bytes = byteArrayOutputStream.toByteArray();
+            log.info("hessian data len  after serialize:{}",bytes.length);
         } catch (Exception e) {
             log.error("hessian序列化异常:",e);
             throw new SerializationFailedException(e.getMessage());

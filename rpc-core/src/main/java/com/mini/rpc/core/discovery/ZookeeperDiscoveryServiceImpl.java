@@ -34,6 +34,7 @@ public class ZookeeperDiscoveryServiceImpl implements DiscoveryService {
     public ZookeeperDiscoveryServiceImpl(String address,LoadBalance loadBalance) {
         this.loadBalance = loadBalance;
         CuratorFramework client = CuratorFrameworkFactory.newClient(address, new ExponentialBackoffRetry(ZkConstant.BASE_SLEEP, ZkConstant.MAX_RETRY));
+        client.start();
         JsonInstanceSerializer<ServiceInfo>jsonInstanceSerializer = new JsonInstanceSerializer<>(ServiceInfo.class);
         this.serviceDiscovery = ServiceDiscoveryBuilder.<ServiceInfo>builder(ServiceInfo.class)
                 .client(client)
