@@ -1,0 +1,11 @@
+
+server:
+  port: 8081
+
+rpc:
+  server:
+    port: 9911
+    app-name: provider1
+spring:
+  profiles:
+    active: dev
